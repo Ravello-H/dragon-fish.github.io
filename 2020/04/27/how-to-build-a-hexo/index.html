@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170980930-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170980930-1');
+</script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+<!-- Baidu Push -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- End Baidu Push -->
+
+
+    <meta charset="utf-8">
+    
+    <!-- Google Ads -->
+    <script data-ad-client="ca-pub-5028262357303610" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- End Google Ads -->
+    
+    
+    
+    <title>如何使用 GitHub Pages + Hexo 白嫖一个个人网站 | 小鱼君的博客 |
+        Dragon Fish&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="日常日记">
+    <meta name="description" content="Hexo 官方文档：https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs&#x2F; (有简体中文哟) 1.注册 GitHub 账号https:&#x2F;&#x2F;github.com&#x2F; 2.新建一个 Repo，名字如下&lt;你的用户名&gt;.github.io">
+<meta property="og:type" content="article">
+<meta property="og:title" content="如何使用 GitHub Pages + Hexo 白嫖一个个人网站">
+<meta property="og:url" content="https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/">
+<meta property="og:site_name" content="小鱼君的博客">
+<meta property="og:description" content="Hexo 官方文档：https:&#x2F;&#x2F;hexo.io&#x2F;zh-cn&#x2F;docs&#x2F; (有简体中文哟) 1.注册 GitHub 账号https:&#x2F;&#x2F;github.com&#x2F; 2.新建一个 Repo，名字如下&lt;你的用户名&gt;.github.io">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-27T04:34:52.000Z">
+<meta property="article:modified_time" content="2020-08-06T23:04:59.680Z">
+<meta property="article:author" content="机智的小鱼君">
+<meta property="article:tag" content="日常日记">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="alternate" type="application/atom+xml" title="小鱼君的博客"
+        href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts = []</script>
+
+    <link rel="stylesheet" href="/=statics/common.css">
+    
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <!-- 夜间模式切换器 -->
+<script>
+  /**
+   * indigo dark-theme
+   * @author 机智的小鱼君
+   */
+  !(function () {
+    var htmlBody = window.document.body;
+    if (localStorage.darkTheme === 'dark-theme') {
+      htmlBody.classList.add('dark-theme');
+    } else {
+      localStorage.darkTheme = 'light-theme';
+    }
+    window.darkThemeToggle = function () {
+      var moon_icon = '<i class="icon icon-lg icon-moon-o"></i>',
+        sun_icon = '<i class="icon icon-lg icon-sun-o"></i>',
+        htmlBody = window.document.body,
+        toggleBtn = window.document.getElementById('darkThemeToggle');
+      if (localStorage.darkTheme === 'dark-theme') {
+        htmlBody.classList.remove('dark-theme');
+        toggleBtn.innerHTML = sun_icon;
+        localStorage.darkTheme = 'light-theme';
+      } else {
+        htmlBody.classList.add('dark-theme');
+        toggleBtn.innerHTML = moon_icon;
+        localStorage.darkTheme = 'dark-theme';
+      }
+    }
+  }());
+</script>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/sidenav-brand-izuna.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="sitename"><a href="/" style="color: inherit;">小鱼君的博客</a></h5>
+          <a href="mailto:dragon-fish@qq.com" title="dragon-fish@qq.com" class="mail">dragon-fish@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              首页
+            </a>
+          </li>
+        
+          <li class="label">
+            <span>
+              查看文章
+            </span>
+          </li> 
+        
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              归档
+            </a>
+          </li>
+        
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              标签
+            </a>
+          </li>
+        
+          <li class="waves-block waves-effect">
+            <a href="/categories"  >
+              <i class="icon icon-lg icon-th-list"></i>
+              分类
+            </a>
+          </li>
+        
+          <li class="label">
+            <span>
+              关于本站
+            </span>
+          </li> 
+        
+          <li class="waves-block waves-effect">
+            <a href="/author"  >
+              <i class="icon icon-lg icon-user-circle"></i>
+              作者
+            </a>
+          </li>
+        
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/dragon-fish" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              GitHub
+            </a>
+          </li>
+        
+          <li class="label">
+            <span>
+              特色页面
+            </span>
+          </li> 
+        
+          <li class="waves-block waves-effect">
+            <a href="/inpageedit-v2"  >
+              <i class="icon icon-lg icon-pencil"></i>
+              InPageEdit 插件
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+            <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <div>
+                
+                小鱼君的博客
+                
+            </div>
+            <div>
+                
+                如何使用 GitHub Pages + Hexo 白嫖一个个人网站
+                
+            </div>
+        </div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off"
+                placeholder="搜索小鱼君的博客">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="darkThemeToggle" onclick="darkThemeToggle();">
+            <i class="icon icon-lg icon-sun-o"></i>
+            <i class="icon icon-lg icon-moon-o"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">如何使用 GitHub Pages + Hexo 白嫖一个个人网站</h1>
+        <h5 class="subtitle">
+            
+            <time datetime="2020-04-27T04:34:52.000Z" itemprop="datePublished" class="page-time">
+  2020-04-27
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/">网页设计</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/Hexo/">Hexo</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-注册-GitHub-账号"><span class="post-toc-number">1.</span> <span class="post-toc-text">1.注册 GitHub 账号</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-新建一个-Repo，名字如下"><span class="post-toc-number">2.</span> <span class="post-toc-text">2.新建一个 Repo，名字如下</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-在你的电脑上下载-Node-js-以及-Git"><span class="post-toc-number">3.</span> <span class="post-toc-text">3.在你的电脑上下载 Node.js 以及 Git</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-在你的电脑上新建文件夹-不用命令行也行"><span class="post-toc-number">4.</span> <span class="post-toc-text">4.在你的电脑上新建文件夹(不用命令行也行)</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-安装-hexo-及其依赖"><span class="post-toc-number">5.</span> <span class="post-toc-text">5.安装 hexo 及其依赖</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#6-初始化-hexo"><span class="post-toc-number">6.</span> <span class="post-toc-text">6.初始化 hexo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#7-写博客"><span class="post-toc-number">7.</span> <span class="post-toc-text">7.写博客</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#8-预览博客"><span class="post-toc-number">8.</span> <span class="post-toc-text">8.预览博客</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#9-发布到-GitHub"><span class="post-toc-number">9.</span> <span class="post-toc-text">9.发布到 GitHub</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#10-大功告成"><span class="post-toc-number">10.</span> <span class="post-toc-text">10.大功告成</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作者的话"><span class="post-toc-number">11.</span> <span class="post-toc-text">作者的话</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-how-to-build-a-hexo"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">如何使用 GitHub Pages + Hexo 白嫖一个个人网站</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-04-27 12:34:52" datetime="2020-04-27T04:34:52.000Z"  itemprop="datePublished">2020-04-27 12:34:52</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/">网页设计</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/Hexo/">Hexo</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            <span id="readingTime">阅读大约需要 <span id="min">3 </span> 分钟</span>
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p><strong>Hexo 官方文档</strong>：<a href="https://hexo.io/zh-cn/docs/" target="_blank" rel="noopener">https://hexo.io/zh-cn/docs/</a> (有简体中文哟)</p>
+<h2 id="1-注册-GitHub-账号"><a href="#1-注册-GitHub-账号" class="headerlink" title="1.注册 GitHub 账号"></a>1.注册 GitHub 账号</h2><p><a href="https://github.com/" target="_blank" rel="noopener">https://github.com/</a></p>
+<h2 id="2-新建一个-Repo，名字如下"><a href="#2-新建一个-Repo，名字如下" class="headerlink" title="2.新建一个 Repo，名字如下"></a>2.新建一个 Repo，名字如下</h2><p><code>&lt;你的用户名&gt;.github.io</code></p>
+<a id="more"></a>
+
+<h2 id="3-在你的电脑上下载-Node-js-以及-Git"><a href="#3-在你的电脑上下载-Node-js-以及-Git" class="headerlink" title="3.在你的电脑上下载 Node.js 以及 Git"></a>3.在你的电脑上下载 Node.js 以及 Git</h2><p>如果你下载太慢了，可以用马云爸爸的镜像：</p>
+<ul>
+<li><a href="https://npm.taobao.org/mirrors/node" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/node</a></li>
+<li><a href="https://npm.taobao.org/mirrors/git-for-windows/" target="_blank" rel="noopener">https://npm.taobao.org/mirrors/git-for-windows/</a></li>
+</ul>
+<h2 id="4-在你的电脑上新建文件夹-不用命令行也行"><a href="#4-在你的电脑上新建文件夹-不用命令行也行" class="headerlink" title="4.在你的电脑上新建文件夹(不用命令行也行)"></a>4.在你的电脑上新建文件夹(不用命令行也行)</h2><p><code>mkdir &lt;文件夹名字&gt;</code></p>
+<h2 id="5-安装-hexo-及其依赖"><a href="#5-安装-hexo-及其依赖" class="headerlink" title="5.安装 hexo 及其依赖"></a>5.安装 hexo 及其依赖</h2><blockquote>
+<p>如果报错 <code>npm 不是内部命令</code>，自行百度原因！！！</p>
+</blockquote>
+<p>在任意位置输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">npm install -g hexo</span><br><span class="line">npm install -g hexo-server</span><br><span class="line">npm install -g hexo-deploy-git</span><br></pre></td></tr></table></figure>
+
+<p>它会自己下载需要的文件</p>
+<h2 id="6-初始化-hexo"><a href="#6-初始化-hexo" class="headerlink" title="6.初始化 hexo"></a>6.初始化 hexo</h2><blockquote>
+<p>怎么在命令行里切换文件夹自行百度！！！</p>
+</blockquote>
+<p>进入你准备放置博客的文件夹输入：<code>hexo init</code></p>
+<p>它会自己下载需要的文件</p>
+<h2 id="7-写博客"><a href="#7-写博客" class="headerlink" title="7.写博客"></a>7.写博客</h2><p>文件夹<code>source</code>内的文件就是你的博文，采用<code>Markdown 语法</code>，Markdown 是什么自行百度！！！</p>
+<blockquote>
+<p>其他设置请看官方文档 <a href="#">↑</a></p>
+</blockquote>
+<h2 id="8-预览博客"><a href="#8-预览博客" class="headerlink" title="8.预览博客"></a>8.预览博客</h2><p>输入：<code>hexo server</code></p>
+<p>打开浏览器访问 <a href="http://localhost:4000" target="_blank" rel="noopener">http://localhost:4000</a> 可以预览你的博客</p>
+<h2 id="9-发布到-GitHub"><a href="#9-发布到-GitHub" class="headerlink" title="9.发布到 GitHub"></a>9.发布到 GitHub</h2><p>修改<code>./_config.yml</code>最底下的内容</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">deploy:</span></span><br><span class="line">  <span class="attr">type:</span> <span class="string">git</span></span><br><span class="line">  <span class="attr">repo:</span> <span class="string">git@github.com:&lt;你的用户名&gt;/&lt;你的用户名&gt;.github.io.git</span></span><br><span class="line">  <span class="attr">branch:</span> <span class="string">master</span></span><br></pre></td></tr></table></figure>
+
+<p>然后依次输入</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">hexo generate</span><br><span class="line">hexo deploy</span><br></pre></td></tr></table></figure>
+
+<p>按提示输入你的 GitHub 用户名和邮件地址以及密码。</p>
+<h2 id="10-大功告成"><a href="#10-大功告成" class="headerlink" title="10.大功告成"></a>10.大功告成</h2><p>访问 https://&lt;你的用户名&gt;.github.io</p>
+<p>想让自己的博客变得更好看，请看官方文档 <a href="#">↑</a></p>
+<h2 id="作者的话"><a href="#作者的话" class="headerlink" title="作者的话"></a>作者的话</h2><p>包教不包会，因为我也不懂编程，都是跟着文档来的，遇到问题请复制粘贴错误代码，然后扔进百度，<del>如果不喜欢百度，也可以用必应或者搜狗</del>。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-08-06T23:04:59.680Z" itemprop="dateUpdated">2020-08-07 07:04:59</time>
+</span><br>
+
+
+        
+        <hr><a href="https://ngnl.fandom.com/zh/wiki/初濑伊纲" target="_blank">初濑伊纲</a>是我的，Nya ha ha~★<br>另外，也不要忘了试试<a href="/InPageEdit-v2" target="_blank">InPageEdit-v2</a>哦！
+        
+    </div>
+    
+    <footer>
+        <a href="/author/">
+            <img src="/img/avatar.jpg" alt="机智的小鱼君">
+            机智的小鱼君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%97%A5%E5%B8%B8%E6%97%A5%E8%AE%B0/" rel="tag">日常日记</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/&title=《如何使用 GitHub Pages + Hexo 白嫖一个个人网站》 — 小鱼君的博客&pic=https://dragon-fish.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/&title=《如何使用 GitHub Pages + Hexo 白嫖一个个人网站》 — 小鱼君的博客&source=Hexo 官方文档：https://hexo.io/zh-cn/docs/ (有简体中文哟)
+1.注册 GitHub 账号https://github.c..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何使用 GitHub Pages + Hexo 白嫖一个个人网站》 — 小鱼君的博客&url=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/&via=https://dragon-fish.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/05/26/ff14-liwuhe/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">FF14喜当狗托</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/04/25/update-via-github-actions/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">使用 GitHub Actions 更新博客</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments"></section>
+<div class="utterances-container">
+  <h3>评论</h3>
+  <script src="https://utteranc.es/client.js" repo="Dragon-Fish/dragon-fish.github.io"
+    issue-term="pathname"
+    label="_utteranc"
+    theme="github-light"
+    crossorigin="anonymous" async>
+    </script>
+</div>
+</section>
+<style>
+  .utterances-container {
+    min-height: 300px;
+    background-image: url(https://vignette.wikia.nocookie.net/dftest/images/8/8c/Ms-loading-spinner.svg/revision/latest?cb=20191203083420);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: all .4s;
+  }
+</style>
+ 
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        感谢阅读~です
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            
+            <p>啊咧，暂时不需要打赏呢~</p>
+            <p>如果你喜欢我的话记得去给我的GitHub项目一个大大的星标哟！</p>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            若无特殊说明，博客文章以及页面内容未经许可禁止转载。部分媒体资源来自网络，侵删。
+            <br>
+            页面自定义代码部分（包括但不限于位于<code>/=statics/</code>路径下的静态资源）采用 <a rel="license"
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名-非商业性使用-相同方式共享 4.0 (CC
+                BY-NC-ND 4.0)</a> 协议授权。
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i
+                        class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>机智的小鱼君 &copy;
+                2019 -
+                2020</span>
+
+            
+            <span>
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a>
+            </span>
+            <span>The theme is adapted based on <a href="https://github.com/yscoder/hexo-theme-indigo"
+                    target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/&title=《如何使用 GitHub Pages + Hexo 白嫖一个个人网站》 — 小鱼君的博客&pic=https://dragon-fish.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/&title=《如何使用 GitHub Pages + Hexo 白嫖一个个人网站》 — 小鱼君的博客&source=Hexo 官方文档：https://hexo.io/zh-cn/docs/ (有简体中文哟)
+1.注册 GitHub 账号https://github.c..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《如何使用 GitHub Pages + Hexo 白嫖一个个人网站》 — 小鱼君的博客&url=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/&via=https://dragon-fish.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dragon-fish.github.io/2020/04/27/how-to-build-a-hexo/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3a3WrEIBAG0L7/S6fQ22XtNzPZhejxqoRUPSlY5+fnJx7X33h9sn7+7p13M6zfv2FgYGA8lnEtxytjvUy+9fU7+d4wMDDOYeTTVTe0/jTvjux8bxgYGBg9Un5xzNfFwMDA+M6Bm4TEGBgYGJMgNjlM80vh+gN9MBbHwMB4IKNaGPjmzx+sb2BgYDyEcRVHPs+8zljYFQYGxtaMdUh5V6K/16KRXByjfhAMDIyHM/KEWrWRq/ppqrNhYGCcxsg3kafsby5PrufHwMDYmjEJNatXxklarZmMw8DA2ILxuQV6ZctmYxkGBsbWjGoSLT9MJ+C8UQwDA+MERi8plhcaq2WG3loYGBgnMCZH7V2FhKSc8HYeDAyMAxj5dW0ScOYJvmrbBwYGxgmM5FpWDUp7BYbqlbRQX8XAwHgso3csTpasXjQLDWQYGBhbM5KDMgf3ygO9Mme0AAYGxkaMe8PX/NNMNv3P3wQDA2MjRvV4TRogemFqknSLglgMDIyNGPc2RlQbJnotHdF/CQwMjO0Yk4A2v9j1QtbkYoqBgbE3494Gr5xavT42428MDIwtGFdxTC6U1fJA4XcxMDC2ZkyOuUlA20Pmnw8DA2M/Rn7IVtNw1dlGNVgMDIwDGPOk26Qs2it2YmBgYPTS9L0U27zMgIGBgdGLgHvJu17pAgMD4wRGrxiQPy/UVFtJOgwMjL0Zk8LAvKx4b3EUAwNjO8YvtHSodqeLMesAAAAASUVORK5CYII=" alt="微信分享二维码">
+</div>
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/=statics/common.js"></script>
+
+<script>
+  var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</body>
+</html>

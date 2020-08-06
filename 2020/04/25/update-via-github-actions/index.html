@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-170980930-1"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-170980930-1');
+</script>
+<!-- End Google Analytics -->
+
+
+    
+
+    
+
+
+<!-- Baidu Push -->
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+<!-- End Baidu Push -->
+
+
+    <meta charset="utf-8">
+    
+    <!-- Google Ads -->
+    <script data-ad-client="ca-pub-5028262357303610" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- End Google Ads -->
+    
+    
+    
+    <title>使用 GitHub Actions 更新博客 | 小鱼君的博客 |
+        Dragon Fish&#39;s Blog</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#3F51B5">
+    
+    
+    <meta name="keywords" content="站点维护">
+    <meta name="description" content="使用 GitHub Actions + Hexo + GitHub Pages ，白嫖 GitHub 的服务器资源建立可以自己更新的个人博客。 连命令行都可以不用敲了，嘻嘻。 前提电脑已经安装Node.js以及Git，知道什么是GitHub，用过Hexo。 1. 建立一个私人 Repo 用于保存源码这个 Repo 下面简称源代码 Repo 例如：https:&#x2F;&#x2F;github.com&#x2F;Dragon-">
+<meta property="og:type" content="article">
+<meta property="og:title" content="使用 GitHub Actions 更新博客">
+<meta property="og:url" content="https://dragon-fish.github.io/2020/04/25/update-via-github-actions/">
+<meta property="og:site_name" content="小鱼君的博客">
+<meta property="og:description" content="使用 GitHub Actions + Hexo + GitHub Pages ，白嫖 GitHub 的服务器资源建立可以自己更新的个人博客。 连命令行都可以不用敲了，嘻嘻。 前提电脑已经安装Node.js以及Git，知道什么是GitHub，用过Hexo。 1. 建立一个私人 Repo 用于保存源码这个 Repo 下面简称源代码 Repo 例如：https:&#x2F;&#x2F;github.com&#x2F;Dragon-">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-04-25T15:22:31.000Z">
+<meta property="article:modified_time" content="2020-08-06T23:04:59.680Z">
+<meta property="article:author" content="机智的小鱼君">
+<meta property="article:tag" content="站点维护">
+<meta name="twitter:card" content="summary">
+    
+    <link rel="alternate" type="application/atom+xml" title="小鱼君的博客"
+        href="/atom.xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.7.2">
+    <script>window.lazyScripts = []</script>
+
+    <link rel="stylesheet" href="/=statics/common.css">
+    
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+    
+<meta name="generator" content="Hexo 4.2.1"></head>
+
+<body>
+    <!-- 夜间模式切换器 -->
+<script>
+  /**
+   * indigo dark-theme
+   * @author 机智的小鱼君
+   */
+  !(function () {
+    var htmlBody = window.document.body;
+    if (localStorage.darkTheme === 'dark-theme') {
+      htmlBody.classList.add('dark-theme');
+    } else {
+      localStorage.darkTheme = 'light-theme';
+    }
+    window.darkThemeToggle = function () {
+      var moon_icon = '<i class="icon icon-lg icon-moon-o"></i>',
+        sun_icon = '<i class="icon icon-lg icon-sun-o"></i>',
+        htmlBody = window.document.body,
+        toggleBtn = window.document.getElementById('darkThemeToggle');
+      if (localStorage.darkTheme === 'dark-theme') {
+        htmlBody.classList.remove('dark-theme');
+        toggleBtn.innerHTML = sun_icon;
+        localStorage.darkTheme = 'light-theme';
+      } else {
+        htmlBody.classList.add('dark-theme');
+        toggleBtn.innerHTML = moon_icon;
+        localStorage.darkTheme = 'dark-theme';
+      }
+    }
+  }());
+</script>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap" style="background-image:url(/img/sidenav-brand-izuna.jpg)">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/avatar.jpg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="sitename"><a href="/" style="color: inherit;">小鱼君的博客</a></h5>
+          <a href="mailto:dragon-fish@qq.com" title="dragon-fish@qq.com" class="mail">dragon-fish@qq.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+          <li class="waves-block waves-effect">
+            <a href="/"  >
+              <i class="icon icon-lg icon-home"></i>
+              首页
+            </a>
+          </li>
+        
+          <li class="label">
+            <span>
+              查看文章
+            </span>
+          </li> 
+        
+          <li class="waves-block waves-effect">
+            <a href="/archives"  >
+              <i class="icon icon-lg icon-archives"></i>
+              归档
+            </a>
+          </li>
+        
+          <li class="waves-block waves-effect">
+            <a href="/tags"  >
+              <i class="icon icon-lg icon-tags"></i>
+              标签
+            </a>
+          </li>
+        
+          <li class="waves-block waves-effect">
+            <a href="/categories"  >
+              <i class="icon icon-lg icon-th-list"></i>
+              分类
+            </a>
+          </li>
+        
+          <li class="label">
+            <span>
+              关于本站
+            </span>
+          </li> 
+        
+          <li class="waves-block waves-effect">
+            <a href="/author"  >
+              <i class="icon icon-lg icon-user-circle"></i>
+              作者
+            </a>
+          </li>
+        
+          <li class="waves-block waves-effect">
+            <a href="https://github.com/dragon-fish" target="_blank" >
+              <i class="icon icon-lg icon-github"></i>
+              GitHub
+            </a>
+          </li>
+        
+          <li class="label">
+            <span>
+              特色页面
+            </span>
+          </li> 
+        
+          <li class="waves-block waves-effect">
+            <a href="/inpageedit-v2"  >
+              <i class="icon icon-lg icon-pencil"></i>
+              InPageEdit 插件
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+            <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">
+            <div>
+                
+                小鱼君的博客
+                
+            </div>
+            <div>
+                
+                使用 GitHub Actions 更新博客
+                
+            </div>
+        </div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off"
+                placeholder="搜索小鱼君的博客">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="darkThemeToggle" onclick="darkThemeToggle();">
+            <i class="icon icon-lg icon-sun-o"></i>
+            <i class="icon icon-lg icon-moon-o"></i>
+        </a>
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">使用 GitHub Actions 更新博客</h1>
+        <h5 class="subtitle">
+            
+            <time datetime="2020-04-25T15:22:31.000Z" itemprop="datePublished" class="page-time">
+  2020-04-25
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/">网页设计</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/Hexo/">Hexo</a></li></ul></li></ul></li></ul>
+
+            
+        </h5>
+    </div>
+
+    
+
+
+</header>
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap post-toc-shrink" id="post-toc">
+            <h4>目录</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#前提"><span class="post-toc-number">1.</span> <span class="post-toc-text">前提</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#1-建立一个私人-Repo-用于保存源码"><span class="post-toc-number">2.</span> <span class="post-toc-text">1. 建立一个私人 Repo 用于保存源码</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#2-建立一个名字叫-lt-用户名-gt-github-io-的-Repo"><span class="post-toc-number">3.</span> <span class="post-toc-text">2. 建立一个名字叫 &lt;用户名&gt;.github.io 的 Repo</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#3-创建-ssh-连接密钥，并上传-GitHub"><span class="post-toc-number">4.</span> <span class="post-toc-text">3. 创建 ssh 连接密钥，并上传 GitHub</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#4-设置工作流"><span class="post-toc-number">5.</span> <span class="post-toc-text">4. 设置工作流</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#5-基本就完成了"><span class="post-toc-number">6.</span> <span class="post-toc-text">5. 基本就完成了</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#作者的话"><span class="post-toc-number">7.</span> <span class="post-toc-text">作者的话</span></a></li></ol>
+        </nav>
+    </aside>
+
+
+<article id="post-update-via-github-actions"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">使用 GitHub Actions 更新博客</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2020-04-25 23:22:31" datetime="2020-04-25T15:22:31.000Z"  itemprop="datePublished">2020-04-25 23:22:31</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/">网页设计</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/%E7%BD%91%E9%A1%B5%E8%AE%BE%E8%AE%A1/Hexo/">Hexo</a></li></ul></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            <span id="readingTime">阅读大约需要 <span id="min">4 </span> 分钟</span>
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>使用 GitHub Actions + Hexo + GitHub Pages ，白嫖 GitHub 的服务器资源建立可以自己更新的个人博客。</p>
+<p><del>连命令行都可以不用敲了，嘻嘻。</del></p>
+<h2 id="前提"><a href="#前提" class="headerlink" title="前提"></a>前提</h2><p>电脑已经安装<strong>Node.js</strong>以及<strong>Git</strong>，知道什么是<strong>GitHub</strong>，用过<strong>Hexo</strong>。</p>
+<h2 id="1-建立一个私人-Repo-用于保存源码"><a href="#1-建立一个私人-Repo-用于保存源码" class="headerlink" title="1. 建立一个私人 Repo 用于保存源码"></a>1. 建立一个私人 Repo 用于保存源码</h2><p>这个 Repo 下面简称<strong>源代码 Repo</strong></p>
+<p>例如：<a href="https://github.com/Dragon-Fish/ghpages" target="_blank" rel="noopener">https://github.com/Dragon-Fish/ghpages</a></p>
+<a id="more"></a>
+
+<h2 id="2-建立一个名字叫-lt-用户名-gt-github-io-的-Repo"><a href="#2-建立一个名字叫-lt-用户名-gt-github-io-的-Repo" class="headerlink" title="2. 建立一个名字叫 &lt;用户名&gt;.github.io 的 Repo"></a>2. 建立一个名字叫 &lt;用户名&gt;.github.io 的 Repo</h2><p>这个 Repo 下面简称<strong>网站 Repo</strong></p>
+<p>例如：<a href="https://github.com/Dragon-Fish/dragon-fish.github.io" target="_blank" rel="noopener">https://github.com/Dragon-Fish/dragon-fish.github.io</a></p>
+<h2 id="3-创建-ssh-连接密钥，并上传-GitHub"><a href="#3-创建-ssh-连接密钥，并上传-GitHub" class="headerlink" title="3. 创建 ssh 连接密钥，并上传 GitHub"></a>3. 创建 ssh 连接密钥，并上传 GitHub</h2><ol>
+<li>在自己的电脑上用命令行敲：<code>ssh-keygen -t rsa -C &quot;&lt;你的邮件地址&gt;&quot;</code></li>
+<li>一路回车，直到系统提示生成完毕</li>
+<li>找到生成的两个文件<code>id_rsa</code>以及<code>id_rsa.pub</code></li>
+<li><code>id_rsa.pub</code>是公钥，点击自己的头像 → 设置 → ssh → 添加，把 id_rsa.pub 里的东西复制粘贴保存</li>
+<li><code>id_rsa</code>是私钥，需要保存到源代码 Repo 里，进入 Repo → 设置 → secrets → 添加 → 把 <code>id_rsa</code> 复制粘贴上去保存，我这里保存时设置的 title 叫<code>HEXO_DEPLOY_PRIVATE_KEY</code>，可以换成任意你觉得好听的名字，但是下面会用到，<del>所以不要设置一些花里胡哨的名字，以免气死自己</del>。</li>
+</ol>
+<h2 id="4-设置工作流"><a href="#4-设置工作流" class="headerlink" title="4. 设置工作流"></a>4. 设置工作流</h2><p>进入源代码 Repo → Actions → 新建</p>
+<p>以下是我设置的工作流，借鉴了来自互联网的一些资料，仅供参考</p>
+<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 工作流名称</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">自动部署GitHub</span> <span class="string">Pages</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 当 master 分支的内容变更，自动开始</span></span><br><span class="line"><span class="attr">on:</span></span><br><span class="line">  <span class="attr">push:</span></span><br><span class="line">    <span class="attr">branches:</span></span><br><span class="line">      <span class="bullet">-</span> <span class="string">master</span></span><br><span class="line"></span><br><span class="line"><span class="attr">jobs:</span></span><br><span class="line">  <span class="attr">build:</span></span><br><span class="line">    <span class="comment"># 使用最新版ubantu虚拟机运行</span></span><br><span class="line">    <span class="attr">runs-on:</span> <span class="string">ubuntu-latest</span></span><br><span class="line"></span><br><span class="line">    <span class="attr">steps:</span></span><br><span class="line">      <span class="comment"># from: https://github.com/actions/checkout</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">本工作流</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/checkout@master</span></span><br><span class="line"></span><br><span class="line">      <span class="comment"># 安装最新版 Node.js</span></span><br><span class="line">      <span class="comment"># from: https://github.com/actions/setup-node</span></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装Node.js</span> <span class="number">10.</span><span class="string">x</span></span><br><span class="line">        <span class="attr">uses:</span> <span class="string">actions/setup-node@master</span></span><br><span class="line">        <span class="attr">with:</span></span><br><span class="line">          <span class="attr">node-version:</span> <span class="string">"10.x"</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">安装Hexo及其依赖</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-cli</span> <span class="string">-g</span></span><br><span class="line">          <span class="string">npm</span> <span class="string">install</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">设置ssh密钥</span></span><br><span class="line">        <span class="attr">env:</span></span><br><span class="line">          <span class="attr">HEXO_DEPLOY_PRIVATE_KEY:</span> <span class="string">$&#123;&#123;</span> <span class="string">secrets.HEXO_DEPLOY_PRIVATE_KEY</span> <span class="string">&#125;&#125;</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">mkdir</span> <span class="string">-p</span> <span class="string">~/.ssh/</span></span><br><span class="line">          <span class="string">echo</span> <span class="string">"$HEXO_DEPLOY_PRIVATE_KEY"</span> <span class="string">&gt;</span> <span class="string">~/.ssh/id_rsa</span> </span><br><span class="line">          <span class="string">chmod</span> <span class="number">600</span> <span class="string">~/.ssh/id_rsa</span></span><br><span class="line">          <span class="string">ssh-keyscan</span> <span class="string">github.com</span> <span class="string">&gt;&gt;</span> <span class="string">~/.ssh/known_hosts</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">配置Git</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.name</span> <span class="string">'&lt;GitHub用户名&gt;'</span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">--global</span> <span class="string">user.email</span> <span class="string">'&lt;GitHub邮件地址&gt;'</span></span><br><span class="line">          <span class="string">git</span> <span class="string">config</span> <span class="string">core.quotepath</span> <span class="literal">false</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">使用Hexo生成静态文件</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">hexo</span> <span class="string">clean</span></span><br><span class="line">          <span class="string">hexo</span> <span class="string">generate</span></span><br><span class="line"></span><br><span class="line">      <span class="bullet">-</span> <span class="attr">name:</span> <span class="string">推送到GitHub</span> <span class="string">Pages</span></span><br><span class="line">        <span class="attr">run:</span> <span class="string">|</span></span><br><span class="line">          <span class="string">hexo</span> <span class="string">deploy</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="5-基本就完成了"><a href="#5-基本就完成了" class="headerlink" title="5. 基本就完成了"></a>5. 基本就完成了</h2><p>对源代码 Repo 的 master 分支做出的任何修改都会触发上面的工作流，自动构建 hexo 网页并推送到网站 Repo</p>
+<h2 id="作者的话"><a href="#作者的话" class="headerlink" title="作者的话"></a>作者的话</h2><p><del>白嫖真爽，全自动白嫖，嘻嘻</del></p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2020-08-06T23:04:59.680Z" itemprop="dateUpdated">2020-08-07 07:04:59</time>
+</span><br>
+
+
+        
+        <hr><a href="https://ngnl.fandom.com/zh/wiki/初濑伊纲" target="_blank">初濑伊纲</a>是我的，Nya ha ha~★<br>另外，也不要忘了试试<a href="/InPageEdit-v2" target="_blank">InPageEdit-v2</a>哦！
+        
+    </div>
+    
+    <footer>
+        <a href="/author/">
+            <img src="/img/avatar.jpg" alt="机智的小鱼君">
+            机智的小鱼君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AB%99%E7%82%B9%E7%BB%B4%E6%8A%A4/" rel="tag">站点维护</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/&title=《使用 GitHub Actions 更新博客》 — 小鱼君的博客&pic=https://dragon-fish.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/&title=《使用 GitHub Actions 更新博客》 — 小鱼君的博客&source=使用 GitHub Actions + Hexo + GitHub Pages ，白嫖 GitHub 的服务器资源建立可以自己更新的个人博客。
+连命令行都..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用 GitHub Actions 更新博客》 — 小鱼君的博客&url=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/&via=https://dragon-fish.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2020/04/27/how-to-build-a-hexo/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">如何使用 GitHub Pages + Hexo 白嫖一个个人网站</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2020/04/20/navigation/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">站点导航</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="comments" id="comments"></section>
+<div class="utterances-container">
+  <h3>评论</h3>
+  <script src="https://utteranc.es/client.js" repo="Dragon-Fish/dragon-fish.github.io"
+    issue-term="pathname"
+    label="_utteranc"
+    theme="github-light"
+    crossorigin="anonymous" async>
+    </script>
+</div>
+</section>
+<style>
+  .utterances-container {
+    min-height: 300px;
+    background-image: url(https://vignette.wikia.nocookie.net/dftest/images/8/8c/Ms-loading-spinner.svg/revision/latest?cb=20191203083420);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transition: all .4s;
+  }
+</style>
+ 
+
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        感谢阅读~です
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <div class="reward-content">
+        
+        <div class="reward-code">
+            
+            <p>啊咧，暂时不需要打赏呢~</p>
+            <p>如果你喜欢我的话记得去给我的GitHub项目一个大大的星标哟！</p>
+            
+        </div>
+        
+    </div>
+</div>
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点总访客数：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点总访问量：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            若无特殊说明，博客文章以及页面内容未经许可禁止转载。部分媒体资源来自网络，侵删。
+            <br>
+            页面自定义代码部分（包括但不限于位于<code>/=statics/</code>路径下的静态资源）采用 <a rel="license"
+                href="https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh">知识共享 署名-非商业性使用-相同方式共享 4.0 (CC
+                BY-NC-ND 4.0)</a> 协议授权。
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i
+                        class="icon icon-lg icon-rss"></i></a></span>
+            
+            <span>机智的小鱼君 &copy;
+                2019 -
+                2020</span>
+
+            
+            <span>
+                Power by <a href="http://hexo.io/" target="_blank">Hexo</a>
+            </span>
+            <span>The theme is adapted based on <a href="https://github.com/yscoder/hexo-theme-indigo"
+                    target="_blank">indigo</a>
+            </span>
+        </p>
+    </div>
+</footer>
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/&title=《使用 GitHub Actions 更新博客》 — 小鱼君的博客&pic=https://dragon-fish.github.io/img/avatar.jpg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/&title=《使用 GitHub Actions 更新博客》 — 小鱼君的博客&source=使用 GitHub Actions + Hexo + GitHub Pages ，白嫖 GitHub 的服务器资源建立可以自己更新的个人博客。
+连命令行都..." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《使用 GitHub Actions 更新博客》 — 小鱼君的博客&url=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/&via=https://dragon-fish.github.io" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=https://dragon-fish.github.io/2020/04/25/update-via-github-actions/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACvklEQVR42u3awY4aMRAEUP7/pzdSTkkEpKrbZvfwfELs7OBnpGlT7scjHl+/R/v+n+PV9a+ueTUeNwYeHh7eaOrvb5fwEkayNO9nVS8BHh4e3jVeMvX8AZ387/u7vV+OolDh4eHhfSsvn1ayEHmpmBUqPDw8vJ/Aa9+ZTT0vNnh4eHjfy9v/+H8f0SZlpr3D4awFDw8P78Ip0s95ffF8Dw8PD29xqp48cGeBRR745sXgyX/h4eHhXeDt49S2CSAJZzfhyOG0GA8PD+8tL5n6JoqdtXO1ZePJPfHw8PCu8ZJSkces7bHZxZYFPDw8vGvdUPl2OQ8sZu8nn9V+DXh4eHineJs4oF6/smkg/9wohsDDw8M7xNs3CuTloY0n2uO0AomHh4e34LXR6qwJYFaQZi0Lf72Dh4eHd4G32bDui8GpZ3gU4OLh4eEd5c2KwWYqm+BjFhzj4eHhneUlDUx5k9M+Gt7fs/ge8PDw8EreVzBmy9EekiXb+nrrj4eHh3eB18YK7TXt4dlm6/ySioeHh3eUlxeDNkjNU5A8As5DimJaeHh4eCUv/9m/f+jn9zn1Vzw8PLx7vNk5+yySmB2zJWEuHh4e3id57VFWO5U8zmjbCKKmLjw8PLyjvPaH/dmwddbalXwlw9wCDw8Pb3T0tXmIJ4xNvJtvvvHw8PBu8zZtT7Mjq1l4kccZT7bUeHh4eId4+TY6X4g24CiaAOIFwsPDw7vHa7fRs03w2ZasIuTFw8PDu8xLxuxQKkfmW+ooGsbDw8O7wNuEpO1WOykJeSMXHh4e3vfykmKQH27NWq/a+xdNDHh4eHjXeElImt86v/7UdrnoLMPDw8P7IG/zkff6oP4zNzw8PLwfyWsZqwd9EI4cLgx4eHh4izCiPb5KXufxR95GgIeHh3ebd2pzPJtE20Dw0fM9PDw8vH/HL6aRFtt+pX6FAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script src="/=statics/common.js"></script>
+
+<script>
+  var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.7.2"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.7.2" async></script>
+
+
+
+
+
+
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</body>
+</html>

@@ -1,0 +1,101 @@
+/**
+ * InPageEdit-v2
+ */
+@font-face {
+  font-family: "Product Sans";
+  src: local("Product Sans"), local("ProductSans-Regular"),
+    url("https://fonts.gstatic.com/s/productsans/v9/pxiDypQkot1TnFhsFMOfGShVF9eOYktMqg.woff2")
+      format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  unicode-range: U+0-FF, U+131, U+152-153, U+2BB-2BC, U+2C6, U+2DA, U+2DC,
+    U+2000-206F, U+2074, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF,
+    U+FFFD;
+}
+
+.font-ps {
+  font-family: "Product Sans" !important;
+}
+
+/** IPE Logo Designed by dianliang **/
+.IPE-logo {
+  font-family: "Product Sans" !important;
+}
+
+.IPE-logo-1 {
+  color: #0052cc;
+}
+
+.IPE-logo-2 {
+  color: #0065ff;
+}
+
+.IPE-logo-2 span {
+  transform: rotate(-23deg);
+  display: inline-block;
+  position: relative;
+  left: -0.05em;
+}
+
+.IPE-logo-3 {
+  color: #2684ff;
+}
+
+.IPE-logo-4 {
+  font-size: small;
+  color: #ffab00;
+}
+
+.banner-card {
+  text-align: center;
+}
+
+.banner-card .big {
+  font-size: 30px;
+}
+
+.toggle {
+  cursor: pointer;
+}
+
+table.sortable tbody {
+  counter-reset: sortabletablescope;
+}
+table.sortable thead tr::before {
+  content: "";
+  display: table-cell;
+  text-align: center;
+  width: 4em;
+  border-bottom: 1px solid #dedede;
+}
+table.sortable tbody tr::before {
+  content: counter(sortabletablescope);
+  counter-increment: sortabletablescope;
+  display: table-cell;
+  text-align: center;
+  border-bottom: 1px solid #dedede;
+}
+
+/** PornHub Logo Style **/
+/** PornHub Logo Style **/
+.pornhub {
+  display: inline;
+  overflow: hidden;
+  background-color: #000000;
+  padding: 2px 0;
+  border-radius: 4px;
+  font-weight: 600;
+  text-transform: capitalize;
+}
+.pornhub > span {
+  padding: 2px 4px;
+  margin: 0;
+  border-radius: 4px;
+}
+.pornhub > span:nth-of-type(1) {
+  color: #ffffff;
+}
+.pornhub > span:nth-of-type(2) {
+  background-color: #ffa500;
+  color: #000000;
+}

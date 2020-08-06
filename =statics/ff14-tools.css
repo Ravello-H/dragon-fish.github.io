@@ -1,0 +1,121 @@
+/** FFXIV Tools **/
+.ff14-tooltip {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+}
+
+.tooltip-item {
+  border-radius: 5px;
+  background: linear-gradient(to bottom right, #292929, #222222);
+  padding: 10px 7px 3px;
+  border: solid 1px #bda45b;
+  box-shadow: rgba(0, 0, 0, 0.7) 0px 1px 8px;
+  font-size: 14px;
+  color: #ccc;
+  width: 360px;
+}
+.tooltip-item--header {
+  padding: 0 !important;
+  display: table-row;
+  vertical-align: middle;
+}
+.tooltip-item--icon {
+  position: relative;
+  display: table-cell;
+}
+.tooltip-item--icon-img {
+  position: absolute;
+  top: 6px;
+  left: 12px;
+}
+.tooltip-item--icon-cover {
+  background: url(https://huiji-public.huijistatic.com/ff14/uploads/3/33/Item-infobox-icon-cover.png);
+  width: 152px;
+  height: 152px;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+.tooltip-item--name {
+  display: table-cell;
+  vertical-align: middle;
+  padding: 0 7px;
+}
+.tooltip-item--name-title {
+  font-size: 20px;
+  line-height: 1;
+  text-shadow: 1px 1px 2px #000;
+}
+.tooltip-item--name-category {
+  font-size: 14px;
+}
+.tooltip-item--base-stat-row {
+  padding: 0;
+}
+.tooltip-item--base-stat-item {
+  width: 33.33333333%;
+  height: 41px;
+  padding-right: 1.65%;
+  display: inline-block;
+  position: relative;
+  text-align: right;
+}
+.tooltip-item--base-stat-item .stat-value-bg {
+  position: absolute;
+  height: 5px;
+  width: 95%;
+  border-radius: 5px;
+  background: #484848;
+  bottom: 1px;
+  right: 5%;
+  z-index: 10;
+}
+.tooltip-item--base-stat-item .stat-type {
+  font-size: 12px;
+}
+.tooltip-item--base-stat-item .stat-value {
+  font-size: 15px;
+  line-height: 24px;
+  height: 24px;
+  position: absolute;
+  z-index: 50;
+  right: 8px;
+  bottom: 0;
+}
+.tooltip-item--base-stat-item .stat-value.only-value {
+  font-size: 24px;
+}
+.tooltip-item .infobox-item--require {
+  margin: 3px 0 3px 6px;
+}
+.tooltip-item--level {
+  background: #000;
+  padding: 3px 13px !important;
+  margin: 0.5em -7px 0;
+}
+.tooltip-item--require {
+  color: #91e39b;
+  padding: 3px 6px;
+}
+.tooltip-item--info-socket li {
+  width: 24px;
+  height: 24px;
+  margin: 0 !important;
+  background: url(https://huiji-public.huijistatic.com/ff14/uploads/2/2a/Item-socket.png);
+  display: inline-block;
+}
+.tooltip-item .ff14-content-box-block ul {
+  margin: 3px 0 3px 6px;
+  padding: 0;
+}
+.tooltip-item .ff14-content-box-block * {
+  line-height: 1.5 !important;
+}
+.tooltip-item p {
+  margin: 2px 0 2px 6px !important;
+}
+.tooltip-item .item-searies-bouns {
+  margin: 3px 0 3px 6px;
+}
